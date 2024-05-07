@@ -1,0 +1,14 @@
+.top-nav{
+    border-bottom: 1.5px solid #f8f8f8;
+    font-family: "Roboto Condensed", sans-serif;
+
+}
+.active{
+    border-bottom: 1.5px solid black;
+    padding-bottom: 5px;
+}
+
+@media screen and (max-width: 600px) {
+}
+
+

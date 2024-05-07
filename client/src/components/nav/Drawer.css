@@ -1,0 +1,32 @@
+.sidebarNav {
+    top: 0;
+    right: 0;
+    flex: 1 0 auto;
+    height: 100%;
+    display: flex;
+    outline: 0;
+    z-index: 1200;
+    position: fixed;
+    overflow-y: auto;
+    flex-direction: column;
+
+    background-color: antiquewhite;
+    width: 400px;
+    flex-shrink: 0;
+
+    backdrop-filter: blur(5px);
+
+
+}
+
+
+
+
+@media screen and (max-width: 900px) {
+    .sidebarNav {
+        background-color: red;
+        width: 100%;
+    
+    }
+  }
+
