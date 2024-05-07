@@ -7,6 +7,8 @@ import AdminDashboard from "../../pages/admin/AdminDashboard";
 import { currentAdmin } from "../../functions/auth";
 import CategoryCreate from "../../pages/admin/category/CategoryCreate";
 import CategoryUpdate from "../../pages/admin/category/CategoryUpdate";
+import SubCreate from "../../pages/admin/sub/SubCreate";
+import SubUpdate from "../../pages/admin/sub/SubUpdate";
 
 const AdminRoute = ({ children, ...rest }) => {
     const { user } = useSelector((state) => ({ ...state }));
@@ -31,6 +33,8 @@ const AdminRoute = ({ children, ...rest }) => {
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="category" element={<CategoryCreate />} />
             <Route path="category/:slug" element={<CategoryUpdate />} />
+            <Route path="sub" element={<SubCreate />} />
+            <Route path="sub/:slug" element={<SubUpdate />} />
 
 
         </Routes>
