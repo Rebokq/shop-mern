@@ -18,6 +18,7 @@ import { currentUser } from './functions/auth';
 import History from './pages/user/History';
 import AdminRoute from './components/routes/AdminRoute';
 import HeaderNew from './components/nav/HeaderNew';
+import Femme from './pages/category.jsx/Femme';
 
 const App = () => {
   const dispatch = useDispatch()
@@ -50,7 +51,7 @@ const App = () => {
 
 
   return (
-    <>
+    <div className=''>
         {/* <Header /> */}
         <HeaderNew />
         <ToastContainer />
@@ -58,6 +59,8 @@ const App = () => {
         <Routes>
 
           <Route path='/' Component={Home} />
+          <Route path='/femme' Component={Femme} />
+
           <Route path='/register' Component={Register} />
           <Route path='/register/complete' Component={RegisterComplete} />
           <Route path='/forgot/password' Component={ForgotPassword} />
@@ -71,7 +74,7 @@ const App = () => {
           <Route path='/admin/*' element={<AdminRoute />} />
 
         </Routes>
-      </>
+      </ div>
       );
 }
 

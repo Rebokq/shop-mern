@@ -63,14 +63,14 @@ const HeaderNew = () => {
 
 
     return (
-        <div className='mt-4 mx-4 pb-2'>
-            <div className='flex space-x-2 items-center'>
-                <div className='new-nav-items h-10 flex items-center'><ul><NavLink to='/'>SNEAKEASE</NavLink></ul></div>
-                <div className='new-nav-items relative h-10 flex items-center space-x-8'>
+        <div className='mt-4 mx-4 pb-2 navbar'>
+            <div className='navigation flex space-x-2 items-center'>
+                <div className='new-nav-items h-10 flex items-center'><ul><NavLink to='/' className={({ isActive }) => (isActive ? 'inactive' : 'inactive')}>SNEAKEASE</NavLink></ul></div>
+                <div className='nav-content new-nav-items relative h-10 flex items-center space-x-8'>
                     <ul><NavLink to='/user/history'>Nouveau</NavLink></ul>
                     <ul><NavLink to="/femme">FEMME</NavLink></ul>
                     <ul><NavLink to="/homme">HOMME</NavLink></ul>
-                    <ul><NavLink to="/enfant">ENFANT</NavLink></ul>
+                    <ul><NavLink to="/enfant" >ENFANT</NavLink></ul>
                 </div>
                 <div className='flex-1'></div>
                 <div className='new-nav-items search-button p-2 flex items-center'><SearchIcon /> <input className='search-input' placeholder='Search ..' /></div>
@@ -78,6 +78,7 @@ const HeaderNew = () => {
                 <button className='new-nav-items profile-button p-2 flex items-center cursor-pointer' onClick={showDefaultDrawer}>
                     <UserIcon />
                 </button>
+                
             </div>
 
             <Drawer
@@ -91,6 +92,7 @@ const HeaderNew = () => {
             >
                 <DrawerNav />
             </Drawer>
+            
         </div>
     )
 }

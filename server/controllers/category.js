@@ -1,4 +1,6 @@
 const Category = require('../models/category')
+const Sub = require('../models/sub')
+
 const slugify = require('slugify')
 
 exports.create = async (req, res) => {
@@ -27,7 +29,7 @@ exports.read = async (req, res) => {
 exports.update = async (req, res) => {
     const { name } = req.body
     try {
-        updated = await Category.findOneAndUpdate({ slug: req.params.slug }, { name, slug: slugify(name) }, { new: true})
+        updated = await Category.findOneAndUpdate({ slug: req.params.slug }, { name, slug: slugify(name) }, { new: true })
         res.json(updated)
 
     } catch (err) {
@@ -46,5 +48,15 @@ exports.remove = async (req, res) => {
         res.status(400).send('Delete category failed')
 
     }
-
 }
+
+exports.getSubs = async (req, res) => {
+    try {
+      const subs = await Sub.find({ parent: req.params._id }).exec();
+      res.json(subs);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Une erreur est survenue lors de la récupération des sous-catégories.' });
+    }
+  };
+  

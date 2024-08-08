@@ -9,6 +9,7 @@ import CategoryCreate from "../../pages/admin/category/CategoryCreate";
 import CategoryUpdate from "../../pages/admin/category/CategoryUpdate";
 import SubCreate from "../../pages/admin/sub/SubCreate";
 import SubUpdate from "../../pages/admin/sub/SubUpdate";
+import ProductCreate from "../../pages/admin/product/ProductCreate";
 
 const AdminRoute = ({ children, ...rest }) => {
     const { user } = useSelector((state) => ({ ...state }));
@@ -35,6 +36,7 @@ const AdminRoute = ({ children, ...rest }) => {
             <Route path="category/:slug" element={<CategoryUpdate />} />
             <Route path="sub" element={<SubCreate />} />
             <Route path="sub/:slug" element={<SubUpdate />} />
+            <Route path="product" element={<ProductCreate />} />
 
 
         </Routes>

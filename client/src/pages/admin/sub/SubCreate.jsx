@@ -85,7 +85,7 @@ const SubCreate = () => {
                             {categories.length > 0 && categories.map((c) => (<option key={c._id} value={c._id}>{c.name}</option>))}
                         </select>
                     </div>
-                    {JSON.stringify(category)}
+                    {/* {JSON.stringify(category)} */}
 
                     <div>
                         <CategoryForm handleSubmit={handleSubmit} name={name} setName={setName} placeholder={"Nouvelle categorie"} enterButton={'Ajouter'} />

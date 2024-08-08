@@ -102,7 +102,7 @@ const Login = () => {
 
 
   const LoginForm = () => (
-    <form className='space-y-6' onSubmit={handleSubmit}>
+    <div className='space-y-6' onSubmit={handleSubmit}>
       <div>
         <label className='block text-sm font-medium text-gray-900 leading-6'>Email</label>
         <div>
@@ -144,7 +144,7 @@ const Login = () => {
 
 
 
-    </form>
+    </div>
 
   );
 
