@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './HeaderNew.css';
 import DrawerNav from './Drawer';
 
@@ -7,7 +7,11 @@ import { createStyles, useTheme } from 'antd';
 
 import firebase from "firebase/compat/app";
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate,  NavLink, Link } from 'react-router-dom';
+import { useNavigate, NavLink, Link } from 'react-router-dom';
+
+import femme from '../../assets/images/Women.jpg'
+import homme from '../../assets/images/Men.jpg'
+import enfant from '../../assets/images/kid.jpeg'
 
 const HeaderNew = () => {
     let navigate = useNavigate()
@@ -60,25 +64,91 @@ const HeaderNew = () => {
 
     };
 
+    const imageDropdown = {
+        femme:femme,
+        homme: homme,
+        enfant: enfant 
+    }
+
+    //DROPDOWN MENU
+    const [isOpen, setIsOpen] = useState(false)
+    const [selectedValue, setSelectedValue] = useState('')
+    const [activeItem, setActiveItem] = useState(''); // État pour l'élément actif
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen)
+    }
+
+    const handleSelect = (e) => {
+        const value = e.target.getAttribute('value');
+        setSelectedValue(value);
+        setActiveItem(value); // Mettre à jour l'élément actif
+        setIsOpen(true)
+    }
+    
+    // Fermer le menu si un clic est détecté en dehors du menu
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (!event.target.closest('.nav-content') && !event.target.closest('.menu-dropdown')) {
+                setIsOpen(false);
+                setActiveItem('');
+
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
 
 
     return (
         <div className='mt-4 mx-4 pb-2 navbar'>
             <div className='navigation flex space-x-2 items-center'>
                 <div className='new-nav-items h-10 flex items-center'><ul><NavLink to='/' className={({ isActive }) => (isActive ? 'inactive' : 'inactive')}>SNEAKEASE</NavLink></ul></div>
-                <div className='nav-content new-nav-items relative h-10 flex items-center space-x-8'>
-                    <ul><NavLink to='/user/history'>Nouveau</NavLink></ul>
-                    <ul><NavLink to="/femme">FEMME</NavLink></ul>
-                    <ul><NavLink to="/homme">HOMME</NavLink></ul>
-                    <ul><NavLink to="/enfant" >ENFANT</NavLink></ul>
+
+                <div>
+                    <div className='nav-content new-nav-items relative h-10 flex items-center space-x-8'>
+                        {/*  <ul><NavLink to='/user/history'>Nouveau</NavLink></ul>
+                        <ul><NavLink to="/femme">FEMME</NavLink></ul>
+                        <ul><NavLink to="/homme">HOMME</NavLink></ul>
+                        <ul><NavLink to="/enfant" >ENFANT</NavLink></ul> */}
+                        <ul className={activeItem === 'Nouveau' ? 'active' : ''}>Nouveau</ul>
+                        <ul onClick={handleSelect} value="femme" className={activeItem === 'femme' ? 'active' : ''}>FEMME</ul>
+                        <ul onClick={handleSelect} value="homme" className={activeItem === 'homme' ? 'active' : ''}>HOMME</ul>
+                        <ul onClick={handleSelect} value="enfant" className={activeItem === 'enfant' ? 'active' : ''}>ENFANT</ul>
+                    </div>
+
+                    {isOpen && (
+                        <div className='menu-dropdown absolute mt-1 rounded-xl w-2/4 h-48 p-2 flex'>
+                            <div className='h-full rounded-xl w-1/5 bg-red-400 mr-2' >
+                                <img className='object-cover w-full rounded-xl h-full' src={imageDropdown[selectedValue] || ''}></img>
+                            </div>
+                            <div className='flex flex-col space-y-2 whitespace-nowrap text-l font-bold'>
+                                <a>Tout voir {selectedValue}</a>
+                                <a>Nouveautés</a>
+                                <a>Produits populaire</a>
+
+                            </div>
+                            <div className='w-full flex justify-around'>
+                                <p>Vestes</p>
+                                <p>Hauts</p>
+                                <p>Pantalons</p>
+
+                            </div>
+                        </div>
+                    )}
+
                 </div>
+
                 <div className='flex-1'></div>
                 <div className='new-nav-items search-button p-2 flex items-center'><SearchIcon /> <input className='search-input' placeholder='Search ..' /></div>
                 <div className='new-nav-items cart-button p-2 flex items-center'><CartIcon /> <a>PANIER (0)</a></div>
                 <button className='new-nav-items profile-button p-2 flex items-center cursor-pointer' onClick={showDefaultDrawer}>
                     <UserIcon />
                 </button>
-                
+
             </div>
 
             <Drawer
@@ -92,7 +162,7 @@ const HeaderNew = () => {
             >
                 <DrawerNav />
             </Drawer>
-            
+
         </div>
     )
 }

@@ -19,6 +19,10 @@
     
 }
 
+.menu-dropdown {
+    background-color: rgba(224, 224, 224, 0.5);
+}
+
 .new-nav-items ul {   
     
     cursor: pointer;
@@ -41,7 +45,8 @@ input::placeholder {
 
 .active{
     border-bottom: 1.5px solid black;
-    padding-bottom: 5px;
+    padding-bottom: 0px;
+    
 }
 
 
@@ -73,3 +78,6 @@ input::placeholder {
   .nav-content:hover {
     
   }
+
+
+  

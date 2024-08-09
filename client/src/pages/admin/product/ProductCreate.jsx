@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom'
 import { createProduct } from '../../../functions/product'
 import ProductCreateForm from '../../../components/forms/ProductCreateForm'
 import { getCategories, getCategorySubs } from '../../../functions/category'
-
+import FileUpload from '../../../components/forms/FileUpload'
+import { LoadingOutlined } from '@ant-design/icons'
 
 const initalState = {
   title: '',
@@ -30,6 +31,7 @@ const ProductCreate = () => {
   const { user } = useSelector((state) => ({ ...state }))
   const [subOptions, setSubOptions] = useState([])
   const [showSub, setShowSub] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     loadCategories()
@@ -80,7 +82,15 @@ const ProductCreate = () => {
         <div className='flex flex-col space-y-4'>
           <h4 className='text-xl'>Product create</h4>
           <hr />
-          {JSON.stringify(values.subs)}
+          {JSON.stringify(values.images)}
+ 
+          <div className='flex flex-col'>
+            <FileUpload values={values} setValues={setValues} setLoading={setLoading} />
+            <div>
+              {loading ? (<LoadingOutlined />) : ''}
+            </div>
+          </div>
+
           <ProductCreateForm
             handleSubmit={handleSubmit}
             handleChange={handleChange}

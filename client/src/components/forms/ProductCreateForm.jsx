@@ -80,7 +80,7 @@ const ProductCreateForm = ({ handleSubmit, handleChange, values, setValues, hand
                     </select>
                 </div>
 
-                <div>
+                <div className='flex flex-col'>
                     <label>Category</label>
                     <select className=''
                         name='category'
@@ -90,7 +90,7 @@ const ProductCreateForm = ({ handleSubmit, handleChange, values, setValues, hand
                     </select>
                 </div>
 
-                {showSub && <div>
+                {showSub && <div className='flex flex-col'>
                     <label>Sub Categories</label>
                     <Select mode="multiple"
                         style={{ width: '100%' }}
