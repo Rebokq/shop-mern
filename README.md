@@ -1,7 +1,3 @@
-Voici un exemple de fichier **README.md** pour votre projet e-commerce en MERN avec espace administrateur : 
-
----
-
 # Plateforme E-Commerce en MERN 🛒
 
 Une application web complète construite avec la stack MERN (MongoDB, Express.js, React, Node.js) offrant une plateforme e-commerce fonctionnelle avec un espace administrateur pour gérer les produits, catégories, et plus encore.
@@ -125,12 +121,6 @@ Une application web complète construite avec la stack MERN (MongoDB, Express.js
 - Détails des produits avec images et prix.
 - Paiement sécurisé via Stripe ou PayPal.
 
+![Aperçu de l'application](client/public/home.png)
+![Aperçu de l'application](client/public/shop.png)
 
----
-
-## Contributions
-
-Les contributions sont les bienvenues !  
-- **Forkez** le projet.
-- Créez une nouvelle branche pour vos modifications.
-- Soumettez une pull request.
